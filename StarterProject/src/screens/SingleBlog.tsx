@@ -2,8 +2,6 @@ import * as React from 'react';
 import { StyleSheet, Text, View, Alert, ScrollView } from 'react-native';
 import { NavigationScreenOptions, NavigationParams } from 'react-navigation';
 import { json } from '../utils/api';
-import { Badge } from 'react-native-elements';
-import { symbol } from 'prop-types';
 
 interface Props extends NavigationParams {}
 interface State {
