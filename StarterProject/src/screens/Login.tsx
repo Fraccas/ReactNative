@@ -24,6 +24,13 @@ export default class Login extends React.Component<Props, State> {
         };
     }
 
+    async componentDidMount() {
+        let user = await getUser();
+        if (user && user.role) {
+            this.props.navigation.navigate('AllBlogs');
+        }
+    }
+
     async handleLogin () {
         try {
             let result = await json('https://afternoon-basin-48933.herokuapp.com/auth/login', 'POST', {
@@ -34,7 +41,6 @@ export default class Login extends React.Component<Props, State> {
             if (result) {
                 await SetAccessToken(result.token, {userid: result.userid, role: result.role});
                 let user = await getUser();
-                console.log(user.role);
                 if (user && user.role) {
                     this.props.navigation.navigate('AllBlogs');
                 } else {
