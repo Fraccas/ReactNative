@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
+import { NavigationStackScreenProps } from 'react-navigation-stack';
 import { NavigationScreenOptions } from 'react-navigation';
-import { json } from '../utils/api';
+import { json, SetAccessToken, getUser } from '../utils/api';
 
-interface Props {}
+interface Props extends NavigationStackScreenProps {}
 interface State {
     email: string,
     password: string
@@ -30,7 +31,18 @@ export default class Login extends React.Component<Props, State> {
                 password: this.state.password
             });
 
-            console.log(result);
+            if (result) {
+                await SetAccessToken(result.token, {userid: result.userid, role: result.role});
+                let user = await getUser();
+                console.log(user.role);
+                if (user && user.role) {
+                    this.props.navigation.navigate('AllBlogs');
+                } else {
+                    Alert.alert('Invalid login information!');
+                }
+            } else {
+                Alert.alert('Invalid login information!');
+            }
         } catch(e) {
             console.log(e);
             Alert.alert("Problem logging in? Contact your admin!");
