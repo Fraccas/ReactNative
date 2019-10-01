@@ -7,7 +7,7 @@ import AllBlogs  from './screens/AllBlogs';
 import SingleBlog from './screens/SingleBlog';
 import Login from './screens/Login';
 import AuthLoading from './screens/AuthLoading';
-import Test from './screens/ScreenTemplate';
+import AddBlog from './screens/AddBlog';
 
 const AuthStack = createStackNavigator({
     // screens
@@ -35,9 +35,9 @@ const AppStack = createStackNavigator({
 const BlogsTab = createBottomTabNavigator(
     {
         Blogs: AppStack,
-        Test: createStackNavigator(
+        AddBlog: createStackNavigator(
             {
-                Test
+                AddBlog
             }, 
             {
                 defaultNavigationOptions: {
@@ -60,8 +60,8 @@ const BlogsTab = createBottomTabNavigator(
                 let iconName;
                 if (routeName === 'Blogs') {
                     iconName = 'rss';
-                } else if (routeName === 'Test') {
-                    iconName = 'code';
+                } else if (routeName === 'AddBlog') {
+                    iconName = 'write';
                 }
 
                 return (
