@@ -61,7 +61,7 @@ const BlogsTab = createBottomTabNavigator(
                 if (routeName === 'Blogs') {
                     iconName = 'rss';
                 } else if (routeName === 'AddBlog') {
-                    iconName = 'write';
+                    iconName = 'edit';
                 }
 
                 return (

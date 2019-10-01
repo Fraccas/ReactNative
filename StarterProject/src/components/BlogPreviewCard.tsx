@@ -9,20 +9,22 @@ interface Props extends NavigationInjectedProps {
         content: string,
         authorid: string,
         _created: Date
-    };
+    },
+    authorname: string
 }
 
 interface State {}
 
 class BlogPreviewCard extends React.Component<Props, State> {
     render () {
-        const { id, title, authorid } = this.props.blog;
+        const { id, title } = this.props.blog;
+        let authorname = this.props.authorname;
         return (
             <Card
                 title={title}
                 image={{uri: 'https://i.pinimg.com/originals/e4/f2/c8/e4f2c8ca0fdf2fc2994a0be74b8a7d7d.jpg'}}
             >
-                <Text style={{marginBottom: 10}}>{`Written by:\n\n${authorid}`}</Text>
+                <Text style={{marginBottom: 10}}>{`Written by:\n\n${authorname}`}</Text>
                 <Button
                     icon={<Icon name='code' color='#ffffff' />}
                     buttonStyle={{ backgroundColor: '#AE3CD7', borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, marginTop: 0 }}
